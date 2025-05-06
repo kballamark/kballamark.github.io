@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             background-color: #fff;
+            font-family: Arial, sans-serif;
         }
         .container {
             display: flex;
@@ -16,25 +17,43 @@
             align-items: center;
             padding: 0;
         }
+        .header {
+            text-align: center;
+            margin: 1cm 0;
+        }
+        .title {
+            font-size: 2.5em;
+            color: rgb(233, 150, 122); /* Soft coral */
+            margin: 0;
+        }
+        .subtitle {
+            font-size: 1.5em;
+            color: rgb(233, 150, 122); /* Soft coral */
+            margin: 0.5cm 0 0;
+        }
         img {
-            width: calc(100% - 1cm); /* Subtract 0.5cm padding from each side */
+            width: calc(100% - 2cm); /* Subtract 1cm padding from each side */
             height: auto;
             max-width: calc(100vw - 2cm); /* Ensure image fits within viewport minus padding */
             display: block;
             object-fit: contain;
-            padding: 0 0.5cm; /* 1cm padding on left and right */
-            margin: 0.25cm 0; /* 0.25cm margin top and bottom for 0.5cm total gap between images */
+            padding: 0 1cm; /* 1cm padding on left and right */
+            margin: 0.5cm 0; /* 0.5cm margin top and bottom for 1cm total gap between images */
             background-color: #fff;
         }
         .container img:first-child {
-            margin-top: 0.5cm; /* Ensure first image has 0.5cm top margin */
+            margin-top: 1cm; /* Ensure first image has 1cm top margin */
         }
         .container img:last-child {
-            margin-bottom: 0.5cm; /* Ensure last image has 0.5cm bottom margin */
+            margin-bottom: 1cm; /* Ensure last image has 1cm bottom margin */
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1 class="title">Our new house!</h1>
+        <h2 class="subtitle">Snekkerstenvej 17, Klarup.</h2>
+    </div>
     <div class="container">
         <img src="pictures/1.jpg" alt="Photo 1">
         <img src="pictures/2.jpg" alt="Photo 2">

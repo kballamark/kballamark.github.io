@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
             background-color: #fff;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0;
+            font-family: 'Poppins', sans-serif;
         }
         .header {
             text-align: center;
@@ -25,11 +20,24 @@
             font-size: 2.5em;
             color: rgb(233, 150, 122); /* Soft coral */
             margin: 0;
+            font-weight: 600;
+        }
+        .emojis {
+            font-size: 2em; /* Larger emojis */
+            color: rgb(233, 150, 122); /* Soft coral */
+            margin: 0.5cm 0;
         }
         .subtitle {
             font-size: 1.5em;
             color: rgb(233, 150, 122); /* Soft coral */
-            margin: 0.5cm 0 0;
+            margin: 0;
+            font-weight: 400;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
         }
         img {
             width: calc(100% - 2cm); /* Subtract 1cm padding from each side */
@@ -47,11 +55,48 @@
         .container img:last-child {
             margin-bottom: 1cm; /* Ensure last image has 1cm bottom margin */
         }
+        /* Mobile carousel for images */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 6vw; /* Smaller, responsive font size */
+            }
+            .emojis {
+                font-size: 5vw;
+            }
+            .subtitle {
+                font-size: 4vw;
+            }
+            .container {
+                flex-direction: row;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+                white-space: nowrap;
+                padding: 0;
+            }
+            img {
+                width: calc(90vw - 2cm); /* Slightly smaller for mobile */
+                max-width: none;
+                scroll-snap-align: center;
+                display: inline-block;
+                margin: 0 0.5cm;
+                padding: 0 0.5cm;
+            }
+            .container img:first-child {
+                margin-left: 1cm;
+                margin-top: 0;
+            }
+            .container img:last-child {
+                margin-right: 1cm;
+                margin-bottom: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1 class="title">Our new house!</h1>
+        <div class="emojis">👨👩👦👶</div>
         <h2 class="subtitle">Snekkerstenvej 17, Klarup.</h2>
     </div>
     <div class="container">
@@ -87,5 +132,22 @@
         <img src="pictures/30.jpg" alt="Photo 30">
         <img src="pictures/31.jpg" alt="Photo 31">
     </div>
+    <script>
+        // Enhance touch scrolling for mobile carousel
+        const container = document.querySelector('.container');
+        let isScrolling;
+        container.addEventListener('touchstart', () => {
+            clearTimeout(isScrolling);
+        });
+        container.addEventListener('touchend', () => {
+            isScrolling = setTimeout(() => {
+                // Snap to nearest image
+                const scrollLeft = container.scrollLeft;
+                const imgWidth = container.querySelector('img').offsetWidth + 20; // Including margins
+                const nearest = Math.round(scrollLeft / imgWidth) * imgWidth;
+                container.scrollTo({ left: nearest, behavior: 'smooth' });
+            }, 100);
+        });
+    </script>
 </body>
 </html>

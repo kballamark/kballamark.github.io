@@ -132,22 +132,5 @@
         <img src="pictures/30.jpg" alt="Photo 30">
         <img src="pictures/31.jpg" alt="Photo 31">
     </div>
-    <script>
-        // Enhance touch scrolling for mobile carousel
-        const container = document.querySelector('.container');
-        let isScrolling;
-        container.addEventListener('touchstart', () => {
-            clearTimeout(isScrolling);
-        });
-        container.addEventListener('touchend', () => {
-            isScrolling = setTimeout(() => {
-                // Snap to nearest image
-                const scrollLeft = container.scrollLeft;
-                const imgWidth = container.querySelector('img').offsetWidth + 20; // Including margins
-                const nearest = Math.round(scrollLeft / imgWidth) * imgWidth;
-                container.scrollTo({ left: nearest, behavior: 'smooth' });
-            }, 100);
-        });
-    </script>
 </body>
 </html>
